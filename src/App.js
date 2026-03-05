@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import Minefield from './components/minefield';
+import { useState } from 'react';
 
 function App() {
+  const [mines, setMines] = useState(20);
+  const [width, setWidth] = useState(10);
+  const [height, setHeight] = useState(10);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Minefield  
+        mines={mines}
+        width={width}
+        height={height}  
+      />
     </div>
   );
 }
