@@ -2,4 +2,9 @@
     width: 30px;
     height: 30px;
     border: 1px solid #000;
+    background: #c0c0c0;
+}
+
+.opened {
+    background: #e4e4e4;
 }
