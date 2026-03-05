@@ -4,13 +4,17 @@ import Tile from './tile';
 function Minefield({mines, width, height}) {
     const tileRows = []; //Rows of tiles
 
-    for (let i=0; i < height; i++) {
+    for (let y=1; y <= height; y++) {
         const tiles = []; //Tiles in row
-        for (let i=0; i < width; i++) {
-            tiles.push(<Tile />)
+        for (let x=1; x <= width; x++) {
+            tiles.push(<Tile 
+                key={x}
+                x={x}
+                y={y}
+            />)
         }
         tileRows.push(
-            <div classname>
+            <div className="tile-row" key={y}>
                 {tiles}
             </div>
         );
