@@ -5,6 +5,10 @@
     background: #c0c0c0;
 }
 
-.opened {
+.open {
     background: #e4e4e4;
+}
+
+.mine {
+    background: #ff0000;
 }

@@ -1,18 +1,17 @@
 import './tile.css';
 import { useState } from 'react';
 
-function Tile({x, y}) {
-    // 0=closed tile, 1=open tile
-    const [status, setStatus] = useState(0)
+function Tile({x, y, mine}) {
+    const [status, setStatus] = useState('closed');
 
     function handleTileClick() {
         console.log(`Clicked tile: x=${x}, y=${y}`)
-        setStatus(1)
-    }
+        setStatus('open')
+    };
 
     return(
         <div 
-            className={`tile ${status}`} 
+            className={`tile ${status} ${mine}`} 
             onClick={handleTileClick}
         >
         </div>
