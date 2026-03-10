@@ -16,8 +16,13 @@ const Tile = forwardRef(({ x, y, mine }, ref) => {
         setStatus('closed')
     };
 
+    function onMineReveal() {
+        mine && setStatus('open')
+    };
+
     useImperativeHandle(ref, () => ({
-        reset: onResetField
+        reset: onResetField,
+        reveal: onMineReveal,
     }));
 
     return(

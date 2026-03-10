@@ -22,6 +22,12 @@ function Minefield({mines, width, height}) {
         });
     };
 
+    const handleRevealMines = () => {
+        tileRefs.current.forEach(tile => {
+            if (tile) tile.reveal();
+        });
+    };
+
     // Create Minefield
     for (let y=0; y < height; y++) {
         const tiles = []; //Tiles in row
@@ -32,7 +38,7 @@ function Minefield({mines, width, height}) {
                 x={x}
                 y={y}
                 // Check for mines from mine array
-                mine={minePos[tileIndex] ? 'mine' : ''}
+                mine={minePos[tileIndex] && 'mine'}
                 ref={(tile) => (tileRefs.current[tileIndex] = tile)}
             />)
         }
@@ -51,7 +57,7 @@ function Minefield({mines, width, height}) {
             </div>
             <div className="controls">
                 <button onClick={() => handleFieldReset()}>{"Reset"}</button>
-                <button>{"(Debug) Reveal mines"}</button>
+                <button onClick={() => handleRevealMines()}>{"(Debug) Reveal mines"}</button>
             </div>
         </div>
     )
