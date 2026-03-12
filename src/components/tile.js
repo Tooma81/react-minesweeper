@@ -1,9 +1,16 @@
 import './tile.css';
-import { useState, useImperativeHandle, forwardRef } from 'react';
+import { useState } from 'react';
 
-const Tile = forwardRef(({ x, y, mine }, ref) => {
-    const [status, setStatus] = useState('closed');
+const Tile = ({ 
+        id, 
+        x, 
+        y, 
+        status,
+        mine, 
+        onTileClick 
+    }) => {
 
+    /** 
     function handleTileClick() {
         console.log(`Clicked tile: x=${x}, y=${y}`)
         setStatus('open')
@@ -19,22 +26,18 @@ const Tile = forwardRef(({ x, y, mine }, ref) => {
     function onMineReveal() {
         mine && setStatus('open')
     };
-
-    useImperativeHandle(ref, () => ({
-        reset: onResetField,
-        reveal: onMineReveal,
-    }));
+    **/
 
     return(
         <div 
             className={`tile ${status} ${mine}`} 
-            onClick={() => handleTileClick()}
+            onClick={() => onTileClick(id, x, y, mine)}
             //onClick={() => 
             //    (status === 'closed' ? handleTileClick() : onResetField())
             //}
         >
         </div>
     )
-});
+};
 
 export default Tile;

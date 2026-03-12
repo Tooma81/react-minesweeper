@@ -9,10 +9,12 @@
     background: #e4e4e4;
 }
 
-.mine {
-    background: #ff0000;
-}
+
 
 .closed {
     background: #c0c0c0;
+}
+
+.mine {
+    background: #ff0000;
 }
