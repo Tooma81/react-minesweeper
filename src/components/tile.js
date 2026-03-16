@@ -1,5 +1,5 @@
 import './tile.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Tile = ({ 
         id, 
@@ -9,7 +9,13 @@ const Tile = ({
         mine, 
         onTileClick 
     }) => {
+    const [state, setState] = useState(''); //Visual state of tile
+    
 
+    useEffect(()=>{
+        setState(status)
+    }, [status]) 
+    console.log(status)
     /** 
     function handleTileClick() {
         console.log(`Clicked tile: x=${x}, y=${y}`)
@@ -30,7 +36,7 @@ const Tile = ({
 
     return(
         <div 
-            className={`tile ${status} ${mine}`} 
+            className={`tile ${state}${mine}`} 
             onClick={() => onTileClick(id, x, y, mine)}
             //onClick={() => 
             //    (status === 'closed' ? handleTileClick() : onResetField())
