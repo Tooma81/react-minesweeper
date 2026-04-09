@@ -2,7 +2,7 @@ import './minefield.css';
 import Tile from './tile';
 import { useState, useEffect } from 'react';
 
-const Minefield = ({ minePos, tileStates, width, height }) => {
+const Minefield = ({ tileStates, width, height }) => {
     const tileRows = []; //Rows of tiles
     
     useEffect(()=>{
