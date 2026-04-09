@@ -3,14 +3,13 @@ import Tile from './tile';
 import { useState, useEffect } from 'react';
 
 const Minefield = ({ tileStates, width, height }) => {
-    const tileRows = []; //Rows of tiles
+    const [tileRows, setTileRows] = useState([]); //Rows of tiles
     
     useEffect(()=>{
         createMinefield();
     }, []);
 
     const handleTileClick = (id, x, y, mine) => {
-        console.log("Tile clicked")
         console.log(`Clicked tile: x=${x}, y=${y}`)
         const nextTileStates = tileStates.map((tile, i) => {
             if (i === tile.id) {
@@ -29,6 +28,7 @@ const Minefield = ({ tileStates, width, height }) => {
 
     // Create Minefield
     const createMinefield = () => {
+        let newTileRows = [];
         for (let y=0; y < height; y++) {
             const tiles = []; //Tiles in row
             for (let x=0; x < width; x++) {
@@ -44,12 +44,13 @@ const Minefield = ({ tileStates, width, height }) => {
                     onTileClick={handleTileClick}
                 />);
             };
-            tileRows.push(
+            newTileRows.push(
                 <div className="tile-row" key={y}>
                     {tiles}
                 </div>
             );
         };
+        setTileRows(newTileRows)
     };
 
 
