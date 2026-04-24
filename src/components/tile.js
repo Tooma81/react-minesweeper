@@ -15,7 +15,6 @@ const Tile = ({
     useEffect(()=>{
         setState(status)
     }, [status]) 
-    console.log(status)
     /** 
     function handleTileClick() {
         console.log(`Clicked tile: x=${x}, y=${y}`)

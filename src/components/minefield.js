@@ -9,8 +9,6 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
         renderMinefield();
     }, [tileStates]);
 
-    console.log(tileStates)
-
     // Render Minefield
     const renderMinefield = () => {
         let newTileRows = [];
@@ -24,9 +22,8 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
                     x={tile.x}
                     y={tile.y}
                     status={tile.status}
-                    // Check for mines from mine array
                     mine={tile.mine ? ' mine' : ''}
-                    onTileClick={() => handleTileClick(tile.id, tile.mine)}
+                    onTileClick={() => handleTileClick(tile.id)}
                 />);
             };
             newTileRows.push(

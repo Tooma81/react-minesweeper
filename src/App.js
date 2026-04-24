@@ -55,19 +55,29 @@ function App() {
     }
   };
 
-  const handleTileStatesUpdate = (id, mine) => {
+  //Handle click on specific tile
+  const handleTileClick = (id) => {
     console.log(`Clicked tile: id=${id}`)
     const nextTileStates = tileStates.map((tile) => {
       if (id === tile.id) {
+        if (tile.mine) {
+          console.log("Boom!!")
+        };
         return {...tile, status: 'open'}
       } else {
         return tile
       };
     });
     setTileStates(nextTileStates);
-    if (mine) {
-      console.log("Boom!!")
-    };
+  }
+
+  //Reset all tiles to 'closed' state
+  const handleReset = () => {
+    console.log(`Tiles reset`)
+    const nextTileStates = tileStates.map((tile) => {
+      return {...tile, status: 'closed'}
+    });
+    setTileStates(nextTileStates);
   }
     
 
@@ -88,10 +98,10 @@ function App() {
             tileStates={tileStates} 
             width={width}
             height={height} 
-            handleTileClick={handleTileStatesUpdate}
+            handleTileClick={handleTileClick}
           />
           <div className="controls">
-            <button>{"Reset"}</button>
+            <button onClick={handleReset}>{"Reset"}</button>
             <button>{"(Debug) Reveal mines"}</button>
           </div>
         </>
