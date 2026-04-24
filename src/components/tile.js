@@ -36,8 +36,8 @@ const Tile = ({
 
     return(
         <div 
-            className={`tile ${state}${mine}`} 
-            onClick={() => onTileClick(id, x, y, mine)}
+            className={`tile ${state} ${mine}`} 
+            onClick={onTileClick}
             //onClick={() => 
             //    (status === 'closed' ? handleTileClick() : onResetField())
             //}
