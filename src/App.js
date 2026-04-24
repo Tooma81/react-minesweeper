@@ -79,7 +79,19 @@ function App() {
     });
     setTileStates(nextTileStates);
   }
-    
+   
+  //Reveal all mines (debug)
+  const revealMines = () => {
+    console.log(`All mines revealed`)
+    const nextTileStates = tileStates.map((tile) => {
+      if (tile.mine) {
+        return {...tile, status: 'open'}
+      } else {
+        return tile
+      };
+    });
+    setTileStates(nextTileStates);
+  }
 
   return (
     <div className="App">
@@ -102,7 +114,7 @@ function App() {
           />
           <div className="controls">
             <button onClick={handleReset}>{"Reset"}</button>
-            <button>{"(Debug) Reveal mines"}</button>
+            <button onClick={revealMines}>{"(Debug) Reveal mines"}</button>
           </div>
         </>
       } 
