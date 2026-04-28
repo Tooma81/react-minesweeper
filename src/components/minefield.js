@@ -9,6 +9,8 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
         renderMinefield();
     }, [tileStates]);
 
+    console.log(tileStates);
+
     // Render Minefield
     const renderMinefield = () => {
         let newTileRows = [];
@@ -23,6 +25,7 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
                     y={tile.y}
                     status={tile.status}
                     mine={tile.mine ? ' mine' : ''}
+                    indicator={tile.indicator}
                     onTileClick={() => handleTileClick(tile.id)}
                 />);
             };

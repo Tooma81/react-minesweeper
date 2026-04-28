@@ -7,14 +7,16 @@ const Tile = ({
         y, 
         status,
         mine, 
+        indicator,
         onTileClick 
     }) => {
     const [state, setState] = useState(''); //Visual state of tile
-    const [indicator, setIndicator] = useState(0); //Surrounding mine indicator
 
     useEffect(()=>{
         setState(status)
     }, [status]) 
+
+    
 
     return(
         <div 

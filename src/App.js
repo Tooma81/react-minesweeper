@@ -2,6 +2,7 @@ import './App.css';
 import Minefield from './components/minefield';
 import { useState, useEffect } from 'react';
 import { shuffle } from './scripts/shuffleArray';
+import { scanForMines } from './scripts/scanForMines';
 
 function App() {
   const [mines, setMines] = useState(20); // Number of mines
@@ -41,7 +42,8 @@ function App() {
               x: x,
               y: y,
               status: 'closed',
-              mine: minePos[tileIndex]
+              mine: minePos[tileIndex],
+              indicator: 0,
             }
           );
         };      
@@ -60,10 +62,11 @@ function App() {
     console.log(`Clicked tile: id=${id}`)
     const nextTileStates = tileStates.map((tile) => {
       if (id === tile.id) {
+        let indicator = scanForMines(tile.x, tile.y, tileStates);
         if (tile.mine) {
           console.log("Boom!!")
         };
-        return {...tile, status: 'open'}
+        return {...tile, status: 'open', indicator: indicator}
       } else {
         return tile
       };
