@@ -9,8 +9,6 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
         renderMinefield();
     }, [tileStates]);
 
-    console.log(tileStates);
-
     // Render Minefield
     const renderMinefield = () => {
         let newTileRows = [];
