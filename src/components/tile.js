@@ -10,28 +10,11 @@ const Tile = ({
         onTileClick 
     }) => {
     const [state, setState] = useState(''); //Visual state of tile
-    
+    const [indicator, setIndicator] = useState(0); //Surrounding mine indicator
 
     useEffect(()=>{
         setState(status)
     }, [status]) 
-    /** 
-    function handleTileClick() {
-        console.log(`Clicked tile: x=${x}, y=${y}`)
-        setStatus('open')
-        if (mine) {
-            console.log("Boom!!")
-        };
-    };
-
-    function onResetField() {
-        setStatus('closed')
-    };
-
-    function onMineReveal() {
-        mine && setStatus('open')
-    };
-    **/
 
     return(
         <div 
@@ -41,6 +24,7 @@ const Tile = ({
             //    (status === 'closed' ? handleTileClick() : onResetField())
             //}
         >
+            <p className="indicator">{indicator}</p>
         </div>
     )
 };

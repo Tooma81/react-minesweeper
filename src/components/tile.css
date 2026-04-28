@@ -1,7 +1,16 @@
 .tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 30px;
     height: 30px;
     border: 1px solid #000;
+}
+
+.tile .indicator {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .open {
@@ -14,4 +23,11 @@
 
 .closed {
     background: #c0c0c0;
+}
+
+/* Mine indicator */
+
+.closed .indicator,
+.mine .indicator {
+    display: none;
 }
