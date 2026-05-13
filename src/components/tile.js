@@ -10,7 +10,7 @@ const Tile = ({
         indicator,
         onTileClick 
     }) => {
-    const [state, setState] = useState(''); //Visual state of tile
+    const [state, setState] = useState('closed'); //Visual state of tile
 
     useEffect(()=>{
         setState(status)
@@ -22,9 +22,6 @@ const Tile = ({
         <div 
             className={`tile ${state} ${mine}`} 
             onClick={onTileClick}
-            //onClick={() => 
-            //    (status === 'closed' ? handleTileClick() : onResetField())
-            //}
         >
             <p className="indicator">{indicator}</p>
         </div>
