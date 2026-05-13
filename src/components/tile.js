@@ -1,5 +1,6 @@
 import './tile.css';
 import { useState, useEffect } from 'react';
+import flag from '../assets/flag.png'
 
 const Tile = ({ 
         id, 
@@ -24,6 +25,7 @@ const Tile = ({
             onClick={onTileClick}
         >
             <p className="indicator">{indicator}</p>
+            <img src={flag} alt="Flag" className={"flag"}/>
         </div>
     )
 };
