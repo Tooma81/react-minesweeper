@@ -1,6 +1,6 @@
 import './minefield.css';
 import Tile from './tile';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 const Minefield = ({ tileStates, width, height, handleTileClick }) => {
     const [tileRows, setTileRows] = useState([]); //Rows of tiles
@@ -23,6 +23,7 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
                     y={tile.y}
                     status={tile.status}
                     mine={tile.mine ? ' mine' : ''}
+                    flagged={tile.flagged}
                     indicator={tile.indicator}
                     onTileClick={() => handleTileClick(tile.id)}
                 />);

@@ -43,7 +43,8 @@ function App() {
               y: y,
               status: 'closed',
               mine: minePos[tileIndex],
-              indicator: 0,
+              flagged: false,
+              indicator: 0, // Mine indicator
             }
           );
         };      

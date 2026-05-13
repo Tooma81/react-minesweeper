@@ -9,13 +9,16 @@ const Tile = ({
         status,
         mine, 
         indicator,
+        flagged,
         onTileClick 
     }) => {
     const [state, setState] = useState('closed'); //Visual state of tile
+    const [hasFlag, setHasFlag] = useState(false); // Is flag placed?
 
     useEffect(()=>{
-        setState(status)
-    }, [status]) 
+        setState(status);
+        setHasFlag(flagged);
+    }, [status, flagged]) 
 
     
 
@@ -25,7 +28,9 @@ const Tile = ({
             onClick={onTileClick}
         >
             <p className="indicator">{indicator}</p>
-            <img src={flag} alt="Flag" className={"flag"}/>
+            {hasFlag &&
+                <img src={flag} alt="Flag" className={"flag"}/>
+            }
         </div>
     )
 };
