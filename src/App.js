@@ -1,6 +1,6 @@
 import './App.css';
 import Minefield from './components/minefield';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { shuffle } from './scripts/shuffleArray';
 import { scanForMines } from './scripts/scanForMines';
 
@@ -12,24 +12,20 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    onCreateTileStates()
-  }, []);
-
   // Create and randomize mines
-  function placeMines() {
+  const placeMines = useCallback(() => {
     let newMinePos = [];
     for (let i=0; i < height * width; i++) {
       i < mines ? newMinePos.push(1) : newMinePos.push(0);
     };
     shuffle(newMinePos);
     return newMinePos;
-  }; 
+  }, [height, width, mines]); 
 
-  // Create tile states array
-  const onCreateTileStates = () => {
+  // Create tile states
+  useEffect(() => {
     let newTileStates = [];
-    let minePos = placeMines()
+    let minePos = placeMines();
     console.log(minePos)
     try {
       for (let y=0; y < height; y++) {
@@ -56,7 +52,7 @@ function App() {
     } finally {
       setLoading(false)
     }
-  };
+  }, [height, width, placeMines]);
 
   //Handle click on specific tile
   const handleTileClick = (id) => {

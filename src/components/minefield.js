@@ -5,12 +5,8 @@ import { useState, useEffect } from 'react';
 const Minefield = ({ tileStates, width, height, handleTileClick }) => {
     const [tileRows, setTileRows] = useState([]); //Rows of tiles
     
+    // Render minefield
     useEffect(()=>{
-        renderMinefield();
-    }, [tileStates]);
-
-    // Render Minefield
-    const renderMinefield = () => {
         let newTileRows = [];
         for (let y=0; y < height; y++) {
             const tiles = []; //Tiles in row
@@ -35,8 +31,7 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
             );
         };
         setTileRows(newTileRows)
-    };
-
+    }, [tileStates, handleTileClick, width, height]);
 
     return(
         <div className="minefield">
