@@ -1,3 +1,8 @@
+@font-face {
+    font-family: indicator;
+    src: url(../assets/fonts/indicator.ttf);
+}
+
 .tile {
     display: flex;
     align-items: center;
@@ -8,9 +13,38 @@
 }
 
 .tile .indicator {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 24px;
-    font-weight: 700;
+    font-family: indicator;
+    font-size: 30px;
+    transform: translateX(2px);
+}
+
+/* Indicator colors */
+
+.indicator-0 {
+    filter: opacity(0);    
+}
+
+.indicator-1,
+.indicator-6 {
+    color: #0000ff   
+}
+
+.indicator-2 {
+    color: #16d445   
+}
+
+.indicator-3 {
+    color: #ff0000  
+}
+
+.indicator-4 {
+    color: #8400ff  
+}
+
+.indicator-5,
+.indicator-7,
+.indicator-8 {
+    color: #ff5e00  
 }
 
 .open {

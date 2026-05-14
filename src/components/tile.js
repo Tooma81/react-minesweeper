@@ -34,7 +34,7 @@ const Tile = ({
             className={`tile ${state} ${mine}`} 
             onClick={onTileClick}
         >
-            <p className="indicator">{indicator}</p>
+            <p className={`indicator indicator-${indicator}`}>{indicator}</p>
             {hasFlag &&
                 <img src={flagSprite} alt="Flag" className={"tile-sprite"}/>
             }
