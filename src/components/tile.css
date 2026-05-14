@@ -34,7 +34,7 @@
 
 /* Flags */
 
-.flag {
+.tile-sprite {
     position: absolute;
     height: 30px;
     width: 30px;
