@@ -32,7 +32,7 @@ const Minefield = ({ tileStates, width, height, handleTileClick, handleFlag }) =
             );
         };
         setTileRows(newTileRows)
-    }, [tileStates, handleTileClick, width, height]);
+    }, [tileStates, handleTileClick, handleFlag, width, height]);
 
     return(
         <div className="minefield">

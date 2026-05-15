@@ -8,6 +8,7 @@ function App() {
   const [mines, setMines] = useState(70); // Number of mines
   const [width, setWidth] = useState(10); // Width of the field in tiles
   const [height, setHeight] = useState(10); // Height of the field in tiles
+  const [flagsPlaced, setFlagsPlaced] = useState(0); // Number of flags placed
   const [tileStates, setTileStates] = useState([]) // Tile states and positions 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -58,7 +59,7 @@ function App() {
   const handleTileClick = (id) => {
     console.log(`Clicked tile: id=${id}`)
     const nextTileStates = tileStates.map((tile) => {
-      if (id === tile.id) {
+      if (id === tile.id && !tile.flagged) {
         let indicator = scanForMines(tile.x, tile.y, tileStates);
         if (tile.mine) {
           console.log("Boom!!")
@@ -75,7 +76,7 @@ function App() {
   const handleReset = () => {
     console.log(`Tiles reset`)
     const nextTileStates = tileStates.map((tile) => {
-      return {...tile, status: 'closed'}
+      return {...tile, status: 'closed', flagged: false}
     });
     setTileStates(nextTileStates);
   }
@@ -95,6 +96,15 @@ function App() {
 
   const handleFlag = (id) => {
     console.log(`Flagged tile ${id}`)
+    const nextTileStates = tileStates.map((tile) => {
+      if (id === tile.id && tile.status === 'closed') {
+        return {...tile, flagged: !tile.flagged}
+      } else {
+        return tile
+      };
+    });
+    console.log(nextTileStates)
+    setTileStates(nextTileStates);
   }
 
   return (
@@ -109,7 +119,7 @@ function App() {
         </>
       :
         <>
-          <p>Width: {width}, Height: {height}, Mines: {mines}</p> 
+          <p>Width: {width}, Height: {height}, Mines: {mines}, Flags placed: {flagsPlaced}</p> 
           <Minefield  
             tileStates={tileStates} 
             width={width}
