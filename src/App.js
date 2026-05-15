@@ -5,7 +5,7 @@ import { shuffle } from './scripts/shuffleArray';
 import { scanForMines } from './scripts/scanForMines';
 
 function App() {
-  const [mines, setMines] = useState(20); // Number of mines
+  const [mines, setMines] = useState(70); // Number of mines
   const [width, setWidth] = useState(10); // Width of the field in tiles
   const [height, setHeight] = useState(10); // Height of the field in tiles
   const [tileStates, setTileStates] = useState([]) // Tile states and positions 
@@ -93,6 +93,10 @@ function App() {
     setTileStates(nextTileStates);
   }
 
+  const handleFlag = (id) => {
+    console.log(`Flagged tile ${id}`)
+  }
+
   return (
     <div className="App">
       {loading || error ?
@@ -111,6 +115,7 @@ function App() {
             width={width}
             height={height} 
             handleTileClick={handleTileClick}
+            handleFlag={handleFlag}
           />
           <div className="controls">
             <button onClick={handleReset}>{"Reset"}</button>

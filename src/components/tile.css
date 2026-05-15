@@ -16,6 +16,9 @@
     font-family: indicator;
     font-size: 30px;
     transform: translateX(2px);
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 /* Indicator colors */
@@ -24,8 +27,7 @@
     filter: opacity(0);    
 }
 
-.indicator-1,
-.indicator-6 {
+.indicator-1 {
     color: #0000ff   
 }
 
@@ -33,16 +35,17 @@
     color: #16d445   
 }
 
-.indicator-3 {
+.indicator-3,
+.indicator-6 {
     color: #ff0000  
 }
 
-.indicator-4 {
+.indicator-4,
+.indicator-7 {
     color: #8400ff  
 }
 
 .indicator-5,
-.indicator-7,
 .indicator-8 {
     color: #ff5e00  
 }

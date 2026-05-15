@@ -2,7 +2,7 @@ import './minefield.css';
 import Tile from './tile';
 import { useState, useEffect } from 'react';
 
-const Minefield = ({ tileStates, width, height, handleTileClick }) => {
+const Minefield = ({ tileStates, width, height, handleTileClick, handleFlag }) => {
     const [tileRows, setTileRows] = useState([]); //Rows of tiles
     
     // Render minefield
@@ -22,6 +22,7 @@ const Minefield = ({ tileStates, width, height, handleTileClick }) => {
                     flagged={tile.flagged}
                     indicator={tile.indicator}
                     onTileClick={() => handleTileClick(tile.id)}
+                    onRightClick={() => handleFlag(tile.id)}
                 />);
             };
             newTileRows.push(

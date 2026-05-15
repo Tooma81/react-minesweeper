@@ -11,7 +11,8 @@ const Tile = ({
         mine, 
         indicator,
         flagged,
-        onTileClick 
+        onTileClick,
+        onRightClick,
     }) => {
     const [state, setState] = useState('closed'); //Visual state of tile
     const [hasFlag, setHasFlag] = useState(false); // Is flag placed?
@@ -27,12 +28,16 @@ const Tile = ({
         }
     }, [status, flagged, mine]) 
 
+    const handleRightClick = (e) => {
+        e.preventDefault();
+        onRightClick();
+    }
     
-
     return(
         <div 
             className={`tile ${state} ${mine}`} 
             onClick={onTileClick}
+            onContextMenu={handleRightClick}
         >
             <p className={`indicator indicator-${indicator}`}>{indicator}</p>
             {hasFlag &&
