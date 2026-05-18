@@ -1,7 +1,7 @@
 import './tile.css';
 import { useState, useEffect } from 'react';
-import flagSprite from '../assets/sprites/flag.png'
-import mineSprite from '../assets/sprites/mine.png'
+import flagSprite from '../assets/svg-sprites/flag.svg'
+import mineSprite from '../assets/svg-sprites/mine.svg'
 
 const Tile = ({ 
         id, 

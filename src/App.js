@@ -5,7 +5,7 @@ import { shuffle } from './scripts/shuffleArray';
 import { scanForMines } from './scripts/scanForMines';
 
 function App() {
-  const [mines, setMines] = useState(70); // Number of mines
+  const [mines, setMines] = useState(30); // Number of mines
   const [width, setWidth] = useState(10); // Width of the field in tiles
   const [height, setHeight] = useState(10); // Height of the field in tiles
   const [flagsPlaced, setFlagsPlaced] = useState(0); // Number of flags placed
