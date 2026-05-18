@@ -9,6 +9,7 @@ function App() {
   const [width, setWidth] = useState(10); // Width of the field in tiles
   const [height, setHeight] = useState(10); // Height of the field in tiles
   const [flagsPlaced, setFlagsPlaced] = useState(0); // Number of flags placed
+  const [tilesOpen, setTilesOpen] = useState(0); // Number of tiles open
   const [tileStates, setTileStates] = useState([]) // Tile states and positions 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -107,6 +108,12 @@ function App() {
     setTileStates(nextTileStates);
   }
 
+  // Updates counters on tilestates 
+  useEffect(() => {
+    setTilesOpen(tileStates.filter(tile => tile.status === 'open').length);
+    setFlagsPlaced(tileStates.filter(tile => tile.flagged).length);
+  }, [tileStates])
+
   return (
     <div className="App">
       {loading || error ?
@@ -119,7 +126,7 @@ function App() {
         </>
       :
         <>
-          <p>Width: {width}, Height: {height}, Mines: {mines}, Flags placed: {flagsPlaced}</p> 
+          <p>Width: {width}, Height: {height}, Mines: {mines}, Flags placed: {flagsPlaced}, Tiles open: {tilesOpen}</p> 
           <Minefield  
             tileStates={tileStates} 
             width={width}
