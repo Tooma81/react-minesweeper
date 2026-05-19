@@ -7,7 +7,7 @@ import { scanForMines } from './scripts/scanForMines';
 function App() {
   const [mines, setMines] = useState(30); // Number of mines
   const [width, setWidth] = useState(10); // Width of the field in tiles
-  const [height, setHeight] = useState(10); // Height of the field in tiles
+  const [height, setHeight] = useState(4); // Height of the field in tiles
   const [flagsPlaced, setFlagsPlaced] = useState(0); // Number of flags placed
   const [tilesOpen, setTilesOpen] = useState(0); // Number of tiles open
   const [tileStates, setTileStates] = useState([]) // Tile states and positions 
@@ -96,6 +96,20 @@ function App() {
     setTileStates(nextTileStates);
   }
 
+  //Flag all mines (debug)
+  const flagMines = () => {
+    console.log(`All mines flagged`)
+    const nextTileStates = tileStates.map((tile) => {
+      if (tile.mine) {
+        return {...tile, flagged: true, status: 'closed'}
+      } else {
+        return tile
+      };
+    });
+    setTileStates(nextTileStates);
+  }
+
+
   const handleFlag = (id) => {
     console.log(`Flagged tile ${id}`)
     const nextTileStates = tileStates.map((tile) => {
@@ -114,11 +128,14 @@ function App() {
     setTilesOpen(tileStates.filter(tile => tile.status === 'open').length);
     setFlagsPlaced(tileStates.filter(tile => tile.flagged).length);
     // Check win condition
-    if ((width * height) - tilesOpen === mines && flagsPlaced === mines) {
+    // Check that there are no mines without flags or safe tiles unopened
+    if (!tileStates.find(tile => (tile.mine && !tile.flagged) || (!tile.mine && tile.status === 'closed'))) {
       setGameWon(true)
+    } else {
+      setGameWon(false)
     };
     console.log(gameWon)
-  }, [tileStates])
+  }, [tileStates, gameWon])
 
   return (
     <div className="App">
@@ -146,6 +163,7 @@ function App() {
           <div className="controls">
             <button onClick={handleReset}>{"Reset"}</button>
             <button onClick={revealMines}>{"(Debug) Reveal mines"}</button>
+            <button onClick={flagMines}>{"(Debug) Flag mines"}</button>
           </div>
         </>
       } 
