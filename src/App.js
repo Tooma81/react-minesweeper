@@ -11,6 +11,7 @@ function App() {
   const [flagsPlaced, setFlagsPlaced] = useState(0); // Number of flags placed
   const [tilesOpen, setTilesOpen] = useState(0); // Number of tiles open
   const [tileStates, setTileStates] = useState([]) // Tile states and positions 
+  const [gameWon, setGameWon] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -112,6 +113,11 @@ function App() {
   useEffect(() => {
     setTilesOpen(tileStates.filter(tile => tile.status === 'open').length);
     setFlagsPlaced(tileStates.filter(tile => tile.flagged).length);
+    // Check win condition
+    if ((width * height) - tilesOpen === mines && flagsPlaced === mines) {
+      setGameWon(true)
+    };
+    console.log(gameWon)
   }, [tileStates])
 
   return (
@@ -126,7 +132,10 @@ function App() {
         </>
       :
         <>
-          <p>Width: {width}, Height: {height}, Mines: {mines}, Flags placed: {flagsPlaced}, Tiles open: {tilesOpen}</p> 
+          <p>Width: {width}, Height: {height}, Mines: {mines}, Flags placed: {flagsPlaced}, Tiles open: {tilesOpen}</p>
+          {gameWon &&
+            <p className="winner-text">YOU'RE WINNER</p>
+          }
           <Minefield  
             tileStates={tileStates} 
             width={width}
