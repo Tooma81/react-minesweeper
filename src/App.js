@@ -5,9 +5,9 @@ import { shuffle } from './scripts/shuffleArray';
 import { scanForMines } from './scripts/scanForMines';
 
 function App() {
-  const [mines, setMines] = useState(30); // Number of mines
+  const [mines, setMines] = useState(20); // Number of mines
   const [width, setWidth] = useState(10); // Width of the field in tiles
-  const [height, setHeight] = useState(4); // Height of the field in tiles
+  const [height, setHeight] = useState(10); // Height of the field in tiles
   const [flagsPlaced, setFlagsPlaced] = useState(0); // Number of flags placed
   const [tilesOpen, setTilesOpen] = useState(0); // Number of tiles open
   const [tileStates, setTileStates] = useState([]) // Tile states and positions 
@@ -29,7 +29,6 @@ function App() {
   useEffect(() => {
     let newTileStates = [];
     let minePos = placeMines();
-    console.log(minePos)
     try {
       for (let y=0; y < height; y++) {
         for (let x=0; x < width; x++) {
@@ -59,12 +58,24 @@ function App() {
 
   //Handle click on specific tile
   const handleTileClick = (id) => {
-    console.log(`Clicked tile: id=${id}`)
     const nextTileStates = tileStates.map((tile) => {
       if (id === tile.id && !tile.flagged) {
         let indicator = scanForMines(tile.x, tile.y, tileStates);
         if (tile.mine) {
           console.log("Boom!!")
+        } else if (!indicator) {
+          let surroundingTiles = [];
+          for (let i=-1; i <= 1; i++) {
+            for (let j=-1; j <= 1; j++) {
+                let currentTile = tileStates.find((nextTile) => {
+                  return nextTile.x === tile.x + i && tile.y === nextTile.y + j;
+                })
+                if (currentTile && !(currentTile?.id === tile.id)) {
+                  surroundingTiles.push(currentTile);
+                }
+              }
+          }
+          console.log(surroundingTiles)
         };
         return {...tile, status: 'open', indicator: indicator}
       } else {
@@ -134,7 +145,6 @@ function App() {
     } else {
       setGameWon(false)
     };
-    console.log(gameWon)
   }, [tileStates, gameWon])
 
   return (
