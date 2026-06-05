@@ -63,6 +63,7 @@ function App() {
         let indicator = scanForMines(tile.x, tile.y, tileStates);
         if (tile.mine) {
           console.log("Boom!!")
+        // If indicator is 0, there are no surrounding mines
         } else if (!indicator) {
           let surroundingTiles = [];
           for (let i=-1; i <= 1; i++) {
