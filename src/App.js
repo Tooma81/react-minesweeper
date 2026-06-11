@@ -58,6 +58,7 @@ function App() {
 
   //Handle click on specific tile
   const handleTileClick = (id) => {
+    let surroundingTiles = [];
     const nextTileStates = tileStates.map((tile) => {
       if (id === tile.id && !tile.flagged) {
         let indicator = scanForMines(tile.x, tile.y, tileStates);
@@ -65,18 +66,16 @@ function App() {
           console.log("Boom!!")
         // If indicator is 0, there are no surrounding mines
         } else if (!indicator) {
-          let surroundingTiles = [];
           for (let i=-1; i <= 1; i++) {
             for (let j=-1; j <= 1; j++) {
                 let currentTile = tileStates.find((nextTile) => {
                   return nextTile.x === tile.x + i && tile.y === nextTile.y + j;
                 })
                 if (currentTile && !(currentTile?.id === tile.id)) {
-                  surroundingTiles.push(currentTile);
+                  surroundingTiles.push(currentTile.id);
                 }
               }
           }
-          console.log(surroundingTiles)
         };
         return {...tile, status: 'open', indicator: indicator}
       } else {
@@ -84,6 +83,9 @@ function App() {
       };
     });
     setTileStates(nextTileStates);
+    if (!surroundingTiles.length === 0) {
+      console.log("yes")
+    }
   }
 
   //Reset all tiles to 'closed' state
