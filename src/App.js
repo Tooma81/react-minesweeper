@@ -58,7 +58,7 @@ function App() {
 
   //Handle click on specific tile
   const handleTileClick = (id) => {
-    let surroundingTiles = [];
+    let surroundingTiles = []; // Array of surrounding tile ids
     const nextTileStates = tileStates.map((tile) => {
       if (id === tile.id && !tile.flagged) {
         let indicator = scanForMines(tile.x, tile.y, tileStates);
@@ -84,8 +84,15 @@ function App() {
     });
     setTileStates(nextTileStates);
     if (surroundingTiles.length > 0) {
-      for (let i=0; i<surroundingTiles.length; i++) {
-        console.log(surroundingTiles[i])
+      openTiles(surroundingTiles)
+    };
+  }
+
+  const openTiles = (ids) => {
+    if (ids.length > 0) {
+      for (let i=0; i<ids.length; i++) {
+        let found = tileStates.find((tile) => tile.id === ids[i]);
+        console.log(found);
       }
     }
   }
