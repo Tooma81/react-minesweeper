@@ -71,7 +71,7 @@ function App() {
                 let currentTile = tileStates.find((nextTile) => {
                   return nextTile.x === tile.x + i && tile.y === nextTile.y + j;
                 })
-                if (currentTile && !(currentTile?.id === tile.id)) {
+                if (currentTile && !(currentTile?.id === tile.id || currentTile?.status === 'open')) {
                   surroundingTiles.push(currentTile.id);
                 }
               }
@@ -83,8 +83,10 @@ function App() {
       };
     });
     setTileStates(nextTileStates);
-    if (!surroundingTiles.length === 0) {
-      console.log("yes")
+    if (surroundingTiles.length > 0) {
+      for (let i=0; i<surroundingTiles.length; i++) {
+        console.log(surroundingTiles[i])
+      }
     }
   }
 
